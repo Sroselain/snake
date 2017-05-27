@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>she</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        .map{
+            height:300px;
+            width:400px;
+            background-color:dimgray;
+            margin:200px auto;
+            position:relative;
+        }
+        img{
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="map">
+            <img class="she" src="blackB.jpg">
+            <img class="she" src="blackB.jpg">
+            <img class="she" src="blackB.jpg">
+            <img class="she" src="blackB.jpg">
+            <img class="she" src="blackB.jpg">
+        </div>
+    </div>
+    <script>
+        var she=document.getElementsByClassName("she");
+        var direction=1;
+        //改变方向
+        window.addEventListener("keydown",changeDi);
+        function changeDi(){
+            switch(event.keyCode){
+                case 87:if(direction!==2){
+                    direction=1;
+                }
+                    break;
+                case 83:if(direction!==1){
+                    direction=2;
+                }
+                    break;
+                case 65:if(direction!==4){
+                    direction=3;
+                }
+                    break;
+                case 68:if(direction!==3){
+                    direction=4;
+                }
+                    break;
+            }
+        }
+        //确定蛇的初始位置
+        for(var i=1;i<she.length;i++){
+            she[0].style.top=100+"px";
+            she[0].style.left=100+"px";
+            she[i].style.top=20+she[i-1].offsetTop+"px";
+            she[i].style.left=100+"px";
+        }
+        //让蛇动起来
+        function sheMove(){
+            for(i=she.length-1;i>0;i--){
+                she[i].style.top=she[i-1].offsetTop+"px";
+                she[i].style.left=she[i-1].offsetLeft+"px";
+            }
+            headMove(direction);
+        }
+        setInterval("sheMove()",100);
+        //蛇头的运动
+        function headMove(e){
+            if(e===1){
+                she[0].style.top=she[0].offsetTop-20+"px";
+            }else if(e===2){
+                she[0].style.top=she[0].offsetTop+20+"px";
+            }else if(e===3){
+                she[0].style.left=she[0].offsetLeft-20+"px";
+            }else{
+                she[0].style.left=she[0].offsetLeft+20+"px";
+            }
+        }
+    </script>
+</body>
+</html>

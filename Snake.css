@@ -1,0 +1,49 @@
+*{
+    padding:0;
+    margin:0;
+    font-family:Arial;
+}
+header{
+    width:100%;
+    height:100px;
+    background:linear-gradient(to top,gray,lightcyan);
+    overflow:hidden;
+}
+h2{
+    width:20%;
+    height:30px;
+    margin:25px auto;
+    text-align:center;
+    font-size:30px;
+}
+.wrapper{
+    width:80%;
+    height:550px;
+    background-color:MistyRose;
+    margin:0 auto;
+    overflow: hidden;
+}
+.map{
+    width:400px;
+    height:300px;
+    background-color: floralwhite;
+    margin:100px auto;
+    border:5px solid dimgray;
+    border-radius:5px;
+    position:relative;
+}
+.snake{
+    position:absolute;
+    width:20px;
+    height:20px;
+    left:100px;
+    top:200px;
+}
+#blackB{
+    position:absolute;
+    width:20px;
+    height:20px;
+    left:260px;
+    top:200px;
+}
+
