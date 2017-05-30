@@ -4,8 +4,15 @@
 var blackB=document.getElementById("blackB");
 var map=document.getElementsByClassName("map");
 var img=document.getElementsByClassName("snake");
+var start=document.getElementById("start");
 var snake=img[0];
 var direction=1;
+var gameOn=false;
+//是游戏开始
+start.addEventListener("click",function(){
+    gameOn=true;
+    start.style.display="none";
+});
 //确定蛇前进的方向
 window.addEventListener("keydown",move);
 function move(){
@@ -28,7 +35,7 @@ function move(){
             break;
     }
 }
-//让蛇动起来
+//让蛇头动起来
 function snakeMove(){
     if(direction===1){
         snake.style.top=snake.offsetTop-20+"px";
@@ -42,14 +49,34 @@ function snakeMove(){
     //console.log("1");
 }
 //控制蛇的速度
-setInterval("snakeMove()",200);
-//触碰边界
-function gameOver(){
-    if(snake.offsetTop<=-20||snake.offsetTop>=280||snake.offsetLeft>=380||snake.offsetLeft<=-20){
-        alert("1");
+setInterval("snakeBodyMove()",200);
+//让蛇身体动起来
+function snakeBodyMove(){
+    if(gameOn===true){
+        for(var i=img.length-1;i>0;i--){
+            img[i].style.top=img[i-1].offsetTop+"px";
+            img[i].style.left=img[i-1].offsetLeft+"px";
+        }
+        snakeMove();
+        gameOverDetec();
     }
 }
-//setInterval("gameOver()",100);
+//死亡检测
+function gameOverDetec(){
+    if(snake.offsetTop<0||snake.offsetTop>300||snake.offsetLeft>400||snake.offsetLeft<0){
+        gameOver();
+    }
+    for(var i=img.length-1;i>0;i++){
+        if(impactChecking(img[i],snake)){
+            gameOver();
+        }
+    }
+}
+//死亡函数
+function gameOver(){
+    gameOn=false;
+    document.getElementById("restart").style.display="block";
+}
 
 
 //检测蛇碰到块了没
