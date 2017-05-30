@@ -5,13 +5,18 @@ var blackB=document.getElementById("blackB");
 var map=document.getElementsByClassName("map");
 var img=document.getElementsByClassName("snake");
 var start=document.getElementById("start");
+var restart=document.getElementById("restart");
 var snake=img[0];
 var direction=1;
 var gameOn=false;
-//是游戏开始
+//使游戏开始
 start.addEventListener("click",function(){
     gameOn=true;
     start.style.display="none";
+});
+//游戏重新开始
+restart.addEventListener("click",function(){
+   window.location.reload();
 });
 //确定蛇前进的方向
 window.addEventListener("keydown",move);
@@ -75,7 +80,7 @@ function gameOverDetec(){
 //死亡函数
 function gameOver(){
     gameOn=false;
-    document.getElementById("restart").style.display="block";
+    restart.style.display="block";
 }
 
 
